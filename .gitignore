@@ -1,0 +1,4 @@
+.idea
+src/lib_jars/*
+out/*
+src/encrypt/bg_image.jpg
