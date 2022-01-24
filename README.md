@@ -1,6 +1,6 @@
 
 # File Encrypt 
-File Encrypt is an application that encrypts files with RSA/AES from a graphical user interfaced. The benefit of using this app is that is the ease of use for the while getting the safety of 4096 bits RSA encryption. 
+File Encrypt is an application that encrypts files with RSA/AES from a graphical user interface. The benefit of using this app is that is the ease of use while getting the safety of 4096 bits RSA encryption. 
 
 
 #### Written in: Java 8 
