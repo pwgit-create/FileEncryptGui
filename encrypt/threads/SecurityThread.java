@@ -13,8 +13,7 @@ import handler.files.SerFileHandler;
 import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import net.lingala.zip4j.ZipFile;
-import net.lingala.zip4j.exception.ZipException;
+
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.NoSuchPaddingException;
@@ -77,8 +76,12 @@ public class SecurityThread implements Runnable {
             case GENERATE_NEW_KEY_PAIR:
                 GenerateNewKeyPairSwitch();
                 break;
-            case SET_KEY_PATHS:
-                SetKeyPathsSwitch();
+            case SET_PUBLIC_KEY_PATH:
+                SetPublicKeySwitch();
+                break;
+            case SET_PRIVATE_KEY_PATH:
+                SetPrivateKeySwitch();
+
         }
     }
 
@@ -207,18 +210,21 @@ public class SecurityThread implements Runnable {
 
             byte[] encryptedSecretKey = fileHandler.ReadFromFile(fileEncryptedSecretKey);
 
-            // byte[] encryptedSecretKey = fileHandler.ReadFromFile(new File(GetDecryptedOutputFileName(fileToBeDecrypted.getAbsolutePath()) + fileHandler.SECRET_KEY_FILE_ENDING));
-
 
             String encryptedAesKey = new String(encryptedSecretKey, ac.ENCODING());
 
 
             final SecretKeySpec secretKeySpec = ac.RetrieveSymmetricKey(propHandler.getPrivateKeyFromSerFile(), encryptedAesKey);
 
+            if(secretKeySpec == null){
+
+                isError = true;
+                endUserMsg="Decryption Error!";
+            }
 
             File decryptedOutputFileTmp = new File(FileUtil.GetDecryptedOutputFileName(fileToBeDecrypted.getAbsolutePath()));
 
-            File decryptedOutputFile =  FileUtil.RemoveCurrentDirFromPath(decryptedOutputFileTmp);
+            File decryptedOutputFile = FileUtil.RemoveCurrentDirFromPath(decryptedOutputFileTmp);
 
             ac.DecryptFile(fileToBeDecrypted, decryptedOutputFile, secretKeySpec);
 
@@ -232,8 +238,7 @@ public class SecurityThread implements Runnable {
 
             fileInputStream.close();
 
-            FileUtil.RemoveTempOutputDirectory(filesInOutputDirectory,fileEncryptedSecretKey.getParentFile());
-
+            FileUtil.RemoveTempOutputDirectory(filesInOutputDirectory, fileEncryptedSecretKey.getParentFile());
 
 
         } catch (FileNotFoundException fileNotFoundException) {
@@ -298,21 +303,33 @@ public class SecurityThread implements Runnable {
 
     }
 
-    private void SetKeyPathsSwitch() {
+    private void SetPublicKeySwitch() {
 
         FileChooser fileChooserPublicKey = new FileChooser();
         fileChooserPublicKey.setTitle("Choose public key path");
         File filePublicKey = fileChooserPublicKey.showOpenDialog(stage);
 
+        try {
+            propHandler.SetPublicKeyPath(filePublicKey);
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+    private void SetPrivateKeySwitch() {
+
+
         FileChooser fileChooserPrivateKey = new FileChooser();
         fileChooserPrivateKey.setTitle("Choose private key path");
         File filePrivateKey = fileChooserPrivateKey.showOpenDialog(stage);
 
-
         try {
-            propHandler.SetKeyPaths(filePrivateKey, filePublicKey);
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
+            propHandler.SetPrivateKeyPath(filePrivateKey);
+        } catch (Exception e) {
+
+            e.printStackTrace();
         }
 
     }

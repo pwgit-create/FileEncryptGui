@@ -84,15 +84,25 @@ public class PropHandler {
         return prop;
     }
 
-    public void SetKeyPaths(File privateKey, File publicKey) throws IOException {
+    public void SetPublicKeyPath(File publicKey) throws IOException {
+
+      SetKeyPath(publicKey,PUBLIC_KEY_PATH_PROP_VALUE);
+
+    }
+
+    public void SetPrivateKeyPath(File privateKey) throws IOException {
+
+      SetKeyPath(privateKey,PRIVATE_KEY_PATH_PROP_VALUE);
+    }
+
+    private void SetKeyPath(File keyFile,String propKey) throws IOException {
 
 
-        Properties prop = new Properties();
+        Properties prop = readPropertiesFile();
 
 
-        prop.setProperty(PUBLIC_KEY_PATH_PROP_VALUE, publicKey.getAbsolutePath());
-        prop.setProperty(PRIVATE_KEY_PATH_PROP_VALUE, privateKey.getAbsolutePath());
 
+        prop.setProperty(propKey,keyFile.getAbsolutePath());
 
         try (OutputStream output = new FileOutputStream(PROP_FILE_NAME)) {
 

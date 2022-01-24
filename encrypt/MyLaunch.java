@@ -30,7 +30,9 @@ public class MyLaunch extends Application {
     @FXML
     Button btnNewKeyPair;
     @FXML
-    Button btnSetKeyPaths;
+    Button btnSetPublicKeyPath;
+    @FXML
+    Button btnSetPrivateKeyPath;
     @FXML
     TextArea taData;
     @FXML
@@ -46,6 +48,8 @@ public class MyLaunch extends Application {
         btnEncrypt = new Button();
         btnDecrypt = new Button();
         btnNewKeyPair = new Button();
+        btnSetPrivateKeyPath = new Button();
+        btnSetPublicKeyPath = new Button();
         taData = new TextArea();
         region = new ButtonBar();
 
@@ -107,10 +111,18 @@ public class MyLaunch extends Application {
     }
 
     @FXML
-    public void SetKeyPaths(ActionEvent ae){
+    public void SetPublicKeyPath(ActionEvent ae){
 
-        Platform.runLater(new SecurityThread(SecurityAction.SET_KEY_PATHS,taData,myStage));
+        Platform.runLater(new SecurityThread(SecurityAction.SET_PUBLIC_KEY_PATH,taData,myStage));
     }
+
+    @FXML
+    public void SetPrivateKeyPath(ActionEvent ae){
+
+        Platform.runLater(new SecurityThread(SecurityAction.SET_PRIVATE_KEY_PATH,taData,myStage));
+    }
+
+
 
 
 }
