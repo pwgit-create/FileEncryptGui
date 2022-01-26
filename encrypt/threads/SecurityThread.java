@@ -22,7 +22,6 @@ import java.io.*;
 import java.nio.file.Path;
 import java.security.KeyPair;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 
 
 public class SecurityThread implements Runnable {
@@ -64,6 +63,7 @@ public class SecurityThread implements Runnable {
 
         String endUserMsg = "";
         boolean isError = false;
+        ta.setText("");
 
         switch (type) {
 
@@ -160,6 +160,7 @@ public class SecurityThread implements Runnable {
 
             e.printStackTrace();
             isError = true;
+
         }
 
 
@@ -311,9 +312,11 @@ public class SecurityThread implements Runnable {
 
         try {
             propHandler.SetPublicKeyPath(filePublicKey);
+            ta.setText("Public key Path: " +filePublicKey.getAbsolutePath());
         } catch (Exception e) {
 
             e.printStackTrace();
+            ta.setText("ERROR: Could not set public key path");
         }
 
     }
@@ -327,9 +330,11 @@ public class SecurityThread implements Runnable {
 
         try {
             propHandler.SetPrivateKeyPath(filePrivateKey);
+            ta.setText("Private key Path: " +filePrivateKey.getAbsolutePath());
         } catch (Exception e) {
 
             e.printStackTrace();
+            ta.setText("ERROR: Could not set private key path");
         }
 
     }

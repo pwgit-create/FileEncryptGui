@@ -21,7 +21,7 @@ public class AsymmetricCryptography extends CryptoBase {
 
 
     private IvParameterSpec generateIv() {
-        byte[] iv = new byte[16];
+            byte[] iv = new byte[16];
         new SecureRandom().nextBytes(iv);
         return new IvParameterSpec(iv);
     }
@@ -87,8 +87,10 @@ public class AsymmetricCryptography extends CryptoBase {
     public boolean EncryptFile(final File in, final File out, final SecretKeySpec secretKey) {
 
         try {
+
             final Cipher cipher = Cipher.getInstance(FILE_CRYPT_ALGORITHM);
-            cipher.init(Cipher.ENCRYPT_MODE, secretKey, generateIv());
+
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey, new IvParameterSpec(ivBytes));
 
             FileInputStream is = new FileInputStream(in);
             CipherOutputStream os = new CipherOutputStream(new FileOutputStream(out), cipher);
@@ -120,11 +122,14 @@ public class AsymmetricCryptography extends CryptoBase {
     }
 
     public boolean DecryptFile(final File in, final File out, final SecretKeySpec secretKeySpec) {
-        try {
-            final Cipher aesCipher = Cipher.getInstance(FILE_CRYPT_ALGORITHM);
-            aesCipher.init(Cipher.DECRYPT_MODE, secretKeySpec, generateIv());
 
-            CipherInputStream is = new CipherInputStream(new FileInputStream(in), aesCipher);
+        try {
+
+            final Cipher cipher = Cipher.getInstance(FILE_CRYPT_ALGORITHM);
+
+            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, new IvParameterSpec(ivBytes));
+
+            CipherInputStream is = new CipherInputStream(new FileInputStream(in), cipher);
             FileOutputStream os = new FileOutputStream(out);
 
             copy(is, os);

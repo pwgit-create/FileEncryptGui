@@ -14,7 +14,7 @@ public class AppKeyGenerator extends CryptoBase {
     public SecretKeySpec GenerateSecretKeySpec() throws NoSuchAlgorithmException {
 
         final KeyGenerator keyGenerator = KeyGenerator.getInstance(AES);
-        keyGenerator.init(aesKeySize);
+        keyGenerator.init(AES_KEY_SIZE);
         SecretKey key = keyGenerator.generateKey();
 
         final byte[] aesKey = key.getEncoded();
@@ -28,7 +28,7 @@ public class AppKeyGenerator extends CryptoBase {
 
         KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(RSA);
 
-        keyPairGen.initialize(rsaKeySize);
+        keyPairGen.initialize(RSA_KEY_SIZE);
 
 
         return keyPairGen.generateKeyPair();
