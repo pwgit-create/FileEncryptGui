@@ -5,6 +5,11 @@ File Encrypt is an application that encrypts files with RSA/AES from a graphical
 
 #### Written in: Java 8 
 
+<p align="center">
+  <img src="img/bg_image.jpg" width="400" title="hover text">
+
+</p>
+
 
 ## Project Libraries
 
