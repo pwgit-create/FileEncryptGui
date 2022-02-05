@@ -51,12 +51,14 @@ File Encrypt is an application that encrypts files with RSA/AES from a graphical
 
     1. Download a JVM with Java FX and Java 8. See download links below: 
 
-        1.1 Azul JVM (Easy to download): https://www.8azul.com/downloads/?version=java-8-lts&package=jdk
+        1.1 Azul JVM (Easy to download): https://www.azul.com/downloads/?version=java-8-lts&package=jdk-fx
         1.2 Oracle(Must create account before download) : https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html
 
     2. Run the jar from the jar_executable folder by clicking on the icon or by executing it from your console (See below); 
 ````java -jar FileEncryptGui````
 
+[Download Azul JVM](https://www.azul.com/downloads/?version=java-8-lts&package=jdk-fx)  
+[Download Oracle JVM](https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html)
 
 #### Start the project in IntelJ
 
