@@ -1,14 +1,10 @@
-
 # File Encrypt 
-File Encrypt is an application that encrypts files with RSA/AES from a graphical user interface. The benefit of using this app is the ease of use while getting the safety of 4096 bits RSA encryption. 
+File Encrypt is an application that encrypts files with RSA/AES from a graphical user interface. 
+The benefit of using this app is the ease of use while getting the safety of 4096 bits RSA encryption. 
 
 
-#### Written in: Java 8 
+![Logo](https://github.com/pwgit-create/FileEncryptGui/blob/main/img/fileEncrypt_small.jpg?raw=true)
 
-<p align="center">
-  <img src="img/bg_image.jpg" width="400" title="hover text">
-
-</p>
 
 
 ## Project Libraries
@@ -33,7 +29,7 @@ File Encrypt is an application that encrypts files with RSA/AES from a graphical
 
 
 
-#### Encrypt file
+### Encrypt file
 
     1. Click on Encrypt to encrypt a file
     2. A new file that ends on.” zc” will be created. That is the file you decrypt or send to a friend.
@@ -62,7 +58,7 @@ File Encrypt is an application that encrypts files with RSA/AES from a graphical
 
 #### Start the project in IntelJ
 
-    1. Import the libraries from the lib_jars folder. ````File -> Project Structure  -> Libraries ````
+    1. Import the libraries from the lib_jars folder.
 
     2. Use a JDK that contains Java FX or add the library to the project 
 
@@ -77,3 +73,8 @@ Its really a hazard to make jar executable with maven and Java FX☹
 * Who can’t contribute to this project? 
  Everyone that is invited to the repository is welcome to 😊  
  
+ ## Feedback
+
+If you have any feedback, please reach out to us at snow_900@outlook.com
+ 
+
